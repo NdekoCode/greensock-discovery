@@ -17,6 +17,9 @@ window.addEventListener("DOMContentLoaded", () => {
     y: 300,
     duration:3.5,
     delay: 2,
+    stagger:{
+      amount:0.35,
+    },
     ease:"circ"
   });
   btn?.addEventListener("click", () => {
