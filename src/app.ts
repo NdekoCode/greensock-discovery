@@ -12,7 +12,7 @@ window.addEventListener("DOMContentLoaded", () => {
   ) as HTMLImageElement;
   const btn = document.querySelector(".btn");
 
-  gsap.to([img1, img2, img3], {
+  gsap.to([img1, img2], {
     scale: 1.5,
     y: 300,
     duration: 3.5,
@@ -23,7 +23,7 @@ window.addEventListener("DOMContentLoaded", () => {
     ease: "circ",
   });
   gsap.to(".btn", {
-    x: "random(100,-100)",
+    x: "random(100,-100,10)",
     duration: 0.35,
     stagger: 0.2,
   });
@@ -43,11 +43,11 @@ window.addEventListener("DOMContentLoaded", () => {
       },
     ],
     onStart: () => {
-      console.log("Animatio Start");
+      console.log("Animation Start");
     },
     onComplete: () => console.log("Animation complete"),
     onRepeat: () => console.log("Animation repeat"),
-    onUpdate:()=>console.log("Animation Updated")
+    onUpdate: () => console.log("Animation Updated"),
   });
   btn?.addEventListener("click", () => {
     gsap.fromTo(
@@ -67,6 +67,28 @@ window.addEventListener("DOMContentLoaded", () => {
       y: 100,
       delay: 2,
       repeat: 2,
+      yoyo:true,
     });
   });
+});
+
+gsap.registerEffect({
+  name: "crazyImage",
+  effect: (targets: gsap.TweenTarget, config: gsap.TweenVars) => {
+    return gsap.to(targets, {
+      y: 100,
+      scale: 1.4,
+      rotation: 360,
+      ...config,
+    });
+  },
+  default: {
+    duration: 2,
+    delay: 2,
+    repeat: 1,
+  },
+  extendTimeline: true,
+});
+gsap.effects.crazyImage(".container-images img:nth-child(3)", {
+  duration: 5,
 });
