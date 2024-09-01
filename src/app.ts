@@ -27,6 +27,28 @@ window.addEventListener("DOMContentLoaded", () => {
     duration: 0.35,
     stagger: 0.2,
   });
+  gsap.to(".container-images img:nth-child(2)", {
+    keyframes: [
+      {
+        duration: 0.35,
+        y: 50,
+      },
+      {
+        duration: 0.35,
+        scale: 1.2,
+      },
+      {
+        duration: 0.35,
+        y: 100,
+      },
+    ],
+    onStart: () => {
+      console.log("Animatio Start");
+    },
+    onComplete: () => console.log("Animation complete"),
+    onRepeat: () => console.log("Animation repeat"),
+    onUpdate:()=>console.log("Animation Updated")
+  });
   btn?.addEventListener("click", () => {
     gsap.fromTo(
       img1,
